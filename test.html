@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japanese Flashcards</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: sans-serif;
+      background: #f0f0f0;
+    }
+    #card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 2rem;
+      text-align: center;
+      max-width: 400px;
+      cursor: pointer;
+      transition: transform 0.6s;
+    }
+    .side {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .hiragana {
+      font-size: 2.5rem;
+      margin: 1rem 0;
+    }
+    .romanji, .meaning {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="card" onclick="handleTap()">
+    <div id="front" class="side active">
+      <div class="hiragana" id="frontHiragana">いぬ</div>
+      <div class="romanji" id="frontRomanji">inu</div>
+    </div>
+    <div id="back" class="side">
+      <div class="hiragana" id="backHiragana">いぬ</div>
+      <div class="romanji" id="backRomanji">inu</div>
+      <div class="meaning" id="backMeaning">dog</div>
+    </div>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const cards = [
+      {hiragana: "いぬ", romanji: "inu", meaning: "dog", audio: "audio/inu.mp3"},
+      {hiragana: "ねこ", romanji: "neko", meaning: "cat", audio: "audio/neko.mp3"},
+      {hiragana: "みず", romanji: "mizu", meaning: "water", audio: "audio/mizu.mp3"},
+      {hiragana: "やま", romanji: "yama", meaning: "mountain", audio: "audio/yama.mp3"},
+      {hiragana: "かわ", romanji: "kawa", meaning: "river", audio: "audio/kawa.mp3"},
+      // add up to 20 here
+    ];
+
+    let current = 0;
+    let showingFront = true;
+
+    function showCard(index) {
+      const card = cards[index];
+      document.getElementById('frontHiragana').textContent = card.hiragana;
+      document.getElementById('frontRomanji').textContent = card.romanji;
+      document.getElementById('backHiragana').textContent = card.hiragana;
+      document.getElementById('backRomanji').textContent = card.romanji;
+      document.getElementById('backMeaning').textContent = card.meaning;
+      document.getElementById('audio').src = card.audio;
+      playAudio();
+    }
+
+    function playAudio() {
+      document.getElementById('audio').play();
+    }
+
+    function handleTap() {
+      const front = document.getElementById('front');
+      const back = document.getElementById('back');
+      if (showingFront) {
+        front.classList.remove('active');
+        back.classList.add('active');
+        showingFront = false;
+      } else {
+        back.classList.remove('active');
+        front.classList.add('active');
+        showingFront = true;
+        nextCard();
+      }
+      playAudio();
+    }
+
+    function nextCard() {
+      let next;
+      do {
+        next = Math.floor(Math.random() * cards.length);
+      } while (next === current && cards.length > 1);
+      current = next;
+      showCard(current);
+    }
+
+    // init first card
+    showCard(current);
+  </script>
+</body>
+</html>
