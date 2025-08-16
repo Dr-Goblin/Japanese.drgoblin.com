@@ -44,26 +44,41 @@
 <body>
   <div id="card" onclick="handleTap()">
     <div id="front" class="side active">
-      <div class="hiragana" id="frontHiragana">いぬ</div>
-      <div class="romanji" id="frontRomanji">inu</div>
+      <div class="romanji" id="frontRomanji" style="font-size: 2.5rem; color: #555; margin: 0.5rem 0;">Konnichiwa</div>
+	  <div class="hiragana" id="frontHiragana" style="font-size: 1rem; margin: 1rem 0;">こんにちは</div>
     </div>
     <div id="back" class="side">
-      <div class="hiragana" id="backHiragana">いぬ</div>
-      <div class="romanji" id="backRomanji">inu</div>
-      <div class="meaning" id="backMeaning">dog</div>
+      <div class="meaning" id="backMeaning" style="font-size: 2.5rem; color: #555; margin: 0.5rem 0;">Good Afternoon</div>
+	  <p>----------</p>
+      <div class="romanji" id="backRomanji" style="font-size: 1rem; color: #555; margin: 0.5rem 0;">Konnichiwa</div>
+	  <div class="hiragana" id="backHiragana" style="font-size: 1rem; margin: 1rem 0;">こんにちは</div>
     </div>
   </div>
+</body>
 
-  <audio id="audio"></audio>
+<audio id="audio"></audio>
 
   <script>
     const cards = [
-      {hiragana: "いぬ", romanji: "inu", meaning: "dog", audio: "audio/inu.mp3"},
-      {hiragana: "ねこ", romanji: "neko", meaning: "cat", audio: "audio/neko.mp3"},
-      {hiragana: "みず", romanji: "mizu", meaning: "water", audio: "audio/mizu.mp3"},
-      {hiragana: "やま", romanji: "yama", meaning: "mountain", audio: "audio/yama.mp3"},
-      {hiragana: "かわ", romanji: "kawa", meaning: "river", audio: "audio/kawa.mp3"},
-      // add up to 20 here
+		{hiragana:"わたしのなまえは___です", romanji:"Watashi no namae wa ___ desu", meaning:"My name is", audio:"audio/My name is.mp3"},
+		{hiragana:"はじめまして", romanji:"Hajimemashite", meaning:"Nice to meet you", audio:"audio/Nice to meet you.mp3"},
+		{hiragana:"おはようございます", romanji:"Ohayou gozaimasu", meaning:"Good morning", audio:"audio/Good morning.mp3"},
+		{hiragana:"こんにちは", romanji:"Konnichiwa", meaning:"Good Afternoon", audio:"audio/Good Afternoon.mp3"},
+		{hiragana:"さようなら", romanji:"Sayounara", meaning:"Farewell", audio:"audio/Farewell.mp3"},
+		{hiragana:"ありがとうございます", romanji:"Arigatou gozaimasu", meaning:"Thank you", audio:"audio/Thank you.mp3"},
+		{hiragana:"すみません", romanji:"Sumimasen", meaning:"Sorry / Excuse me", audio:"audio/Sorry / Excuse me.mp3"},
+		{hiragana:"かんぱい", romanji:"Kanpai", meaning:"Cheers!", audio:"audio/Cheers!.mp3"},
+		{hiragana:"はい", romanji:"Hai", meaning:"Yes", audio:"audio/Yes.mp3"},
+		{hiragana:"だいじょうぶ", romanji:"Daijoubu", meaning:"It's ok / Don't  worry", audio:"audio/It's ok / Don't  worry.mp3"},
+		{hiragana:"おねがいします", romanji:"Onegaishimasu", meaning:"Please", audio:"audio/Please.mp3"},
+		{hiragana:"えいご", romanji:"Eigo", meaning:"English", audio:"audio/English.mp3"},
+		{hiragana:"かわいい", romanji:"Kawaii", meaning:"Cute", audio:"audio/Cute.mp3"},
+		{hiragana:"いい", romanji:"ii", meaning:"Good", audio:"audio/Good.mp3"},
+		{hiragana:"だめだ", romanji:"Dameda", meaning:"No Good", audio:"audio/No Good.mp3"},
+		{hiragana:"おいしい", romanji:"Oishii", meaning:"Delicious", audio:"audio/Delicious.mp3"},
+		{hiragana:"たのしい", romanji:"Tanoshii", meaning:"Fun", audio:"audio/Fun.mp3"},
+		{hiragana:"すきです", romanji:"Suki desu", meaning:"I Like it", audio:"audio/I Like it.mp3"},
+
     ];
 
     let current = 0;
