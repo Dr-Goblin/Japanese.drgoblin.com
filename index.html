@@ -6,126 +6,94 @@
   <title>Japanese Flashcards</title>
   <style>
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       font-family: sans-serif;
-      background: #f0f0f0;
-    }
-    #card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin: 0;
       padding: 2rem;
+      background: #3498db;
+      color: #fff;
       text-align: center;
-      max-width: 400px;
-      cursor: pointer;
-      transition: transform 0.6s;
     }
-    .side {
-      display: none;
+    h1 {
+      text-align: center;
     }
-    .active {
-      display: block;
+    table {
+      width: 80%;
+      max-width: 600px;
+      margin: 1rem auto;
+      border-collapse: collapse;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #fff;
+      color: #333;
     }
-    .hiragana {
-      font-size: 2.5rem;
-      margin: 1rem 0;
+    th, td {
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      text-align: center;
     }
-    .romanji, .meaning {
+    th {
+      background-color: #1abc9c;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    button {
+      padding: 1rem 2rem;
       font-size: 1.2rem;
-      color: #555;
-      margin: 0.5rem 0;
+      background-color: #1abc9c;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #16a085;
     }
   </style>
 </head>
 <body>
-  <div id="card" onclick="handleTap()">
-    <div id="front" class="side active">
-      <div class="romanji" id="frontRomanji" style="font-size: 2.5rem; color: #555; margin: 0.5rem 0;">Konnichiwa</div>
-	  <div class="hiragana" id="frontHiragana" style="font-size: 1rem; margin: 1rem 0;">こんにちは</div>
-    </div>
-    <div id="back" class="side">
-      <div class="meaning" id="backMeaning" style="font-size: 2.5rem; color: #555; margin: 0.5rem 0;">Good Afternoon</div>
-	  <p>----------</p>
-      <div class="romanji" id="backRomanji" style="font-size: 1rem; color: #555; margin: 0.5rem 0;">Konnichiwa</div>
-	  <div class="hiragana" id="backHiragana" style="font-size: 1rem; margin: 1rem 0;">こんにちは</div>
-    </div>
+  <h1>Japanese Flashcards</h1>
+  <p>Hi Mum, I made this website for you to learn some Japanese, tried to choose the most useful words/phrases to know, plus a couple fun ones</p>
+  <p>Below is the full list of the words/phrases but I also made a flash card page to test yourself. So excited for you to come!</p>
+
+  <div class="button-container">
+    <button onclick="window.location.href='flashcards.html'">Start Flashcards</button>
   </div>
-</body>
 
-<audio id="audio"></audio>
+  <table>
+    <thead>
+      <tr>
+        <th>Japanese</th>
+        <th>Romanji</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>わたしのなまえはレスリーです</td><td>Watashi no namae wa resurii desu</td><td>My name is Lesley</td></tr>
+      <tr><td>はじめまして</td><td>Hajimemashite</td><td>Nice to meet you</td></tr>
+      <tr><td>おはようございます</td><td>Ohayou gozaimasu</td><td>Good morning</td></tr>
+      <tr><td>こんにちは</td><td>Konnichiwa</td><td>Good Afternoon</td></tr>
+      <tr><td>さようなら</td><td>Sayounara</td><td>Farewell</td></tr>
+      <tr><td>ありがとうございます</td><td>Arigatou gozaimasu</td><td>Thank you</td></tr>
+      <tr><td>すみません</td><td>Sumimasen</td><td>Sorry / Excuse me</td></tr>
+      <tr><td>かんぱい</td><td>Kanpai</td><td>Cheers!</td></tr>
+      <tr><td>はい</td><td>Hai</td><td>Yes</td></tr>
+      <tr><td>だいじょうぶ</td><td>Daijoubu</td><td>It's ok / Don't worry</td></tr>
+      <tr><td>おねがいします</td><td>Onegaishimasu</td><td>Please</td></tr>
+      <tr><td>えいご</td><td>Eigo</td><td>English</td></tr>
+      <tr><td>かわいい</td><td>Kawaii</td><td>Cute</td></tr>
+      <tr><td>いい</td><td>ii</td><td>Good</td></tr>
+      <tr><td>だめだ</td><td>Dameda</td><td>No Good</td></tr>
+      <tr><td>おいしい</td><td>Oishii</td><td>Delicious</td></tr>
+      <tr><td>たのしい</td><td>Tanoshii</td><td>Fun</td></tr>
+      <tr><td>すきです</td><td>Suki desu</td><td>I Like it</td></tr>
+    </tbody>
+  </table>
 
-  <script>
-    const cards = [
-		{hiragana:"わたしのなまえは___です", romanji:"Watashi no namae wa ___ desu", meaning:"My name is", audio:"audio/わたしのなまえは___です.mp3"},
-		{hiragana:"はじめまして", romanji:"Hajimemashite", meaning:"Nice to meet you", audio:"audio/はじめまして.mp3"},
-		{hiragana:"おはようございます", romanji:"Ohayou gozaimasu", meaning:"Good morning", audio:"audio/おはようございます.mp3"},
-		{hiragana:"こんにちは", romanji:"Konnichiwa", meaning:"Good Afternoon", audio:"audio/こんにちは.mp3"},
-		{hiragana:"さようなら", romanji:"Sayounara", meaning:"Farewell", audio:"audio/さようなら.mp3"},
-		{hiragana:"ありがとうございます", romanji:"Arigatou gozaimasu", meaning:"Thank you", audio:"audio/ありがとうございます.mp3"},
-		{hiragana:"すみません", romanji:"Sumimasen", meaning:"Sorry / Excuse me", audio:"audio/すみません.mp3"},
-		{hiragana:"かんぱい", romanji:"Kanpai", meaning:"Cheers!", audio:"audio/かんぱい.mp3"},
-		{hiragana:"はい", romanji:"Hai", meaning:"Yes", audio:"audio/はい.mp3"},
-		{hiragana:"だいじょうぶ", romanji:"Daijoubu", meaning:"It's ok / Don't  worry", audio:"audio/だいじょうぶ.mp3"},
-		{hiragana:"おねがいします", romanji:"Onegaishimasu", meaning:"Please", audio:"audio/おねがいします.mp3"},
-		{hiragana:"えいご", romanji:"Eigo", meaning:"English", audio:"audio/えいご.mp3"},
-		{hiragana:"かわいい", romanji:"Kawaii", meaning:"Cute", audio:"audio/かわいい.mp3"},
-		{hiragana:"いい", romanji:"ii", meaning:"Good", audio:"audio/いい.mp3"},
-		{hiragana:"だめだ", romanji:"Dameda", meaning:"No Good", audio:"audio/だめだ.mp3"},
-		{hiragana:"おいしい", romanji:"Oishii", meaning:"Delicious", audio:"audio/おいしい.mp3"},
-		{hiragana:"たのしい", romanji:"Tanoshii", meaning:"Fun", audio:"audio/たのしい.mp3"},
-		{hiragana:"すきです", romanji:"Suki desu", meaning:"I Like it", audio:"audio/すきです.mp3"},
-    ];
 
-    let current = 0;
-    let showingFront = true;
-
-    function showCard(index) {
-      const card = cards[index];
-      document.getElementById('frontHiragana').textContent = card.hiragana;
-      document.getElementById('frontRomanji').textContent = card.romanji;
-      document.getElementById('backHiragana').textContent = card.hiragana;
-      document.getElementById('backRomanji').textContent = card.romanji;
-      document.getElementById('backMeaning').textContent = card.meaning;
-      document.getElementById('audio').src = card.audio;
-      playAudio();
-    }
-
-    function playAudio() {
-      document.getElementById('audio').play();
-    }
-
-    function handleTap() {
-      const front = document.getElementById('front');
-      const back = document.getElementById('back');
-      if (showingFront) {
-        front.classList.remove('active');
-        back.classList.add('active');
-        showingFront = false;
-      } else {
-        back.classList.remove('active');
-        front.classList.add('active');
-        showingFront = true;
-        nextCard();
-      }
-      playAudio();
-    }
-
-    function nextCard() {
-      let next;
-      do {
-        next = Math.floor(Math.random() * cards.length);
-      } while (next === current && cards.length > 1);
-      current = next;
-      showCard(current);
-    }
-
-    // init first card
-    showCard(current);
-  </script>
 </body>
 </html>
-

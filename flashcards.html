@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japanese Flashcards</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.5s;
+      flex-direction: column;
+    }
+    .content {
+      text-align: center;
+      color: #fff;
+      transition: opacity 0.3s;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .hiragana {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+    .romanji, .meaning {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #1abc9c;
+      color: #fff;
+      border: none;
+      border-radius: 0.3rem;
+      cursor: pointer;
+    }
+    .back-button:hover {
+      background-color: #16a085;
+    }
+  </style>
+</head>
+<body id="body">
+  <button class="back-button" onclick="window.location.href='index.html'">Home</button>
+  <div class="content" id="cardContent">
+    <div id="textHiragana" class="hiragana">こんにちは</div>
+    <div id="textRomanji" class="romanji">Konnichiwa</div>
+    <div id="textMeaning" class="meaning hidden">Good Afternoon</div>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const cards = [
+      {hiragana:"わたしのなまえはレスリーです", romanji:"Watashi no namae wa resurii desu", meaning:"My name is Lesley", audio:"audio/わたしのなまえはレスリーです.mp3"},
+	  {hiragana:"はじめまして", romanji:"Hajimemashite", meaning:"Nice to meet you", audio:"audio/はじめまして.mp3"},
+      {hiragana:"おはようございます", romanji:"Ohayou gozaimasu", meaning:"Good morning", audio:"audio/おはようございます.mp3"},
+      {hiragana:"こんにちは", romanji:"Konnichiwa", meaning:"Good Afternoon", audio:"audio/こんにちは.mp3"},
+      {hiragana:"さようなら", romanji:"Sayounara", meaning:"Farewell", audio:"audio/さようなら.mp3"},
+      {hiragana:"ありがとうございます", romanji:"Arigatou gozaimasu", meaning:"Thank you", audio:"audio/ありがとうございます.mp3"},
+      {hiragana:"すみません", romanji:"Sumimasen", meaning:"Sorry / Excuse me", audio:"audio/すみません.mp3"},
+      {hiragana:"かんぱい", romanji:"Kanpai", meaning:"Cheers!", audio:"audio/かんぱい.mp3"},
+      {hiragana:"はい", romanji:"Hai", meaning:"Yes", audio:"audio/はい.mp3"},
+      {hiragana:"だいじょうぶ", romanji:"Daijoubu", meaning:"It's ok / Don't worry", audio:"audio/だいじょうぶ.mp3"},
+      {hiragana:"おねがいします", romanji:"Onegaishimasu", meaning:"Please", audio:"audio/おねがいします.mp3"},
+      {hiragana:"えいご", romanji:"Eigo", meaning:"English", audio:"audio/えいご.mp3"},
+      {hiragana:"かわいい", romanji:"Kawaii", meaning:"Cute", audio:"audio/かわいい.mp3"},
+      {hiragana:"いい", romanji:"ii", meaning:"Good", audio:"audio/いい.mp3"},
+      {hiragana:"だめだ", romanji:"Dameda", meaning:"No Good", audio:"audio/だめだ.mp3"},
+      {hiragana:"おいしい", romanji:"Oishii", meaning:"Delicious", audio:"audio/おいしい.mp3"},
+      {hiragana:"たのしい", romanji:"Tanoshii", meaning:"Fun", audio:"audio/たのしい.mp3"},
+      {hiragana:"すきです", romanji:"Suki desu", meaning:"I Like it", audio:"audio/すきです.mp3"}
+    ];
+
+    const colors = {front: '#1abc9c', back: '#3498db'};
+    let current = 0;
+    let showingFront = true;
+    let firstTap = true;
+
+    document.body.addEventListener('click', handleTap);
+
+    function showCard(index) {
+      const card = cards[index];
+      document.getElementById('textHiragana').textContent = card.hiragana;
+      document.getElementById('textRomanji').textContent = card.romanji;
+      document.getElementById('textMeaning').textContent = card.meaning;
+      document.getElementById('textRomanji').classList.remove('hidden');
+      document.getElementById('textHiragana').classList.remove('hidden');
+      document.getElementById('textMeaning').classList.add('hidden');
+      document.getElementById('audio').src = card.audio;
+      document.body.style.backgroundColor = colors.front;
+      showingFront = true;
+    }
+
+    function playAudioFront() {
+      if(showingFront) {
+        document.getElementById('audio').play();
+      }
+    }
+
+    function handleTap() {
+      if(firstTap) {
+        // Only play the first card's audio on first tap
+        playAudioFront();
+        firstTap = false;
+        return;
+      }
+
+      const meaning = document.getElementById('textMeaning');
+      const hiragana = document.getElementById('textHiragana');
+      const romanji = document.getElementById('textRomanji');
+      if (showingFront) {
+        meaning.classList.remove('hidden');
+        hiragana.classList.add('hidden');
+        romanji.classList.add('hidden');
+        document.body.style.backgroundColor = colors.back;
+        showingFront = false;
+      } else {
+        nextCard();
+      }
+    }
+
+    function nextCard() {
+      current = (current + 1) % cards.length;
+      showCard(current);
+      playAudioFront();
+    }
+
+    showCard(current);
+  </script>
+</body>
+</html>
