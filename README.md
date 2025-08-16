@@ -12,9 +12,7 @@ This project was specially made for my mum to help her learn Japanese in a fun a
 
 ## Usage
 
-1. Clone or download this repository.
-2. Open `index.html` in your browser to view the main page.
-3. Click **Start Flashcards** to begin practicing.
+[Japanese.drgoblin.com](https://Japanese.drgoblin.com)  
 
 ## Table of Contents
 
