@@ -11,22 +11,16 @@
       height: 100%;
       font-family: sans-serif;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
       cursor: pointer;
       transition: background-color 0.5s;
-      flex-direction: column;
     }
     .content {
       text-align: center;
       color: #fff;
       transition: opacity 0.3s;
       width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin-top: 50px;
     }
     .hidden {
       display: none;
@@ -68,8 +62,8 @@
 
   <script>
     const cards = [
+      {hiragana:"はじめまして", romanji:"Hajimemashite", meaning:"Nice to meet you", audio:"audio/はじめまして.mp3"},
       {hiragana:"わたしのなまえはレスリーです", romanji:"Watashi no namae wa resurii desu", meaning:"My name is Lesley", audio:"audio/わたしのなまえはレスリーです.mp3"},
-	  {hiragana:"はじめまして", romanji:"Hajimemashite", meaning:"Nice to meet you", audio:"audio/はじめまして.mp3"},
       {hiragana:"おはようございます", romanji:"Ohayou gozaimasu", meaning:"Good morning", audio:"audio/おはようございます.mp3"},
       {hiragana:"こんにちは", romanji:"Konnichiwa", meaning:"Good Afternoon", audio:"audio/こんにちは.mp3"},
       {hiragana:"さようなら", romanji:"Sayounara", meaning:"Farewell", audio:"audio/さようなら.mp3"},
@@ -116,7 +110,6 @@
 
     function handleTap() {
       if(firstTap) {
-        // Only play the first card's audio on first tap
         playAudioFront();
         firstTap = false;
         return;
